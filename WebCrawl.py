@@ -1,11 +1,6 @@
 from urllib.request import urlopen as uRequest
 from bs4 import BeautifulSoup as Soup
 
-#untuk pindah tabel href Semester & SKS
-
-
-
-#module membuat screenshot
 import pyautogui
 import tkinter as tk
 
@@ -25,19 +20,12 @@ containers = soup_page.find_all("div",{"class":"main"})
 file_name = "profile.csv"
 berkas = open(file_name,"w")
 
-#headers = "Nama, Jenis Kelamin, Perguruan Tinggi, Program Studi, Nomor Induk, Semester Awal, Status Awal, Status saat ini\n"
-
-#berkas.write(headers)
-
 for container in containers:
-#mengambil jabatan bernama title pada div
+    #mengambil jabatan bernama title pada div
     Jabatan_contain = container.find("div",{"class":"title"})
     jabatan = Jabatan_contain.find(text=True)
-    # count = 0
-    # for count in len(the_url):
-    #     if len(count)=='m' and len(count+1)=='a' and len(count+2)=='h' and len(count+3)=='a' and len(count+4)=='s' and len(count+5)=='i' and len(count+6)=='s' and len(count+7)=='s' and len(count+8)=='a':
 
-        #mengambil table data bernama table1 di div
+    #mengambil table data bernama table1 di div
     tabel_contain = container.find("table",{"class":"table1"})
     tabel_row = tabel_contain.find_all("tr")
 
@@ -90,17 +78,3 @@ for container in containers:
     berkas.write("Status Awal : " + statAwal + "\n")
     berkas.write("Status Akhir : " + statAkhir + "\n\n")
 berkas.close()
-# menu= tk.Tk()
-
-# canvas1 = tk.Canvas(menu, width = 300, height = 300)
-# canvas1.pack()
-
-# def takeScreenshot ():
-    
-#     myScreenshot = pyautogui.screenshot()
-#     myScreenshot.save(r'/root/Documents/screenshot2.png')
-
-# myButton = tk.Button(text='Take Screenshot', command=takeScreenshot, bg='green',fg='white',font= 10)
-# canvas1.create_window(150, 150, window=myButton)
-
-# menu.mainloop()
